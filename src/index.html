@@ -24,20 +24,32 @@
         soluta ducimus incidunt deleniti illo eligendi odio nostrum ipsum eum
         sapiente quia praesentium, facilis omnis similique a sunt expedita. Vel
         nulla ea soluta ducimus incidunt deleniti illo eligendi odio nostrum
-        ipsum eum sapiente quia praesentium, facilis omnis similique
+        ipsum eum sapiente quia praesentium, facilis omnis similique.
       </p>
     </div>
+
     <!--background music-->
-    <audio id="bg-music" autoplay loop>
-      <source src="background-music.mp3" type="audio/mpeg">
+    <audio id="bg-music" autoplay>
+      <source src="background-music.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
+    <button id="music-toggle">Pause Music</button>
     <script>
       const music = document.getElementById("bg-music");
-      music.volume = 0.2; //for soft background music
+      const toggleBtn = document.getElementById("music-toggle");
+
+      toggleBtn.addEventListener("click", () => {
+        if (music.paused) {
+          music.play();
+          toggleBtn.textContent = "Pause Music";
+        } else {
+          music.pause();
+          toggleBtn.textContent = "Play Music";
+        }
+      });
 
       music.addEventListener("timeupdate", () => {
-        if (music.current.timeTime >= 180) {
+        if (music.currentTime >= 180) {
           music.pause();
           music.currentTime = 0;
         }
